@@ -31,11 +31,11 @@ def main():
     option = input("What would you like to do: ")
 
     if option == 1:
-        pass
+        add = add_contacts(contacts)
     elif option == 2:
-        pass
+        display = display_contacts(contacts)
     elif option == 3:
-        pass
+        search = search_contacts(contacts)
     elif option == 4:
         exit
     else:
