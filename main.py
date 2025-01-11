@@ -1,5 +1,9 @@
-def display_options():
-    return
+def display_menu():
+    print("\nContact Book")
+    print("1. Add Contact")
+    print("2. View All Contacts")
+    print("3. Search Contact")
+    print("4. Exit")
 
 def add_contacts():
     return
