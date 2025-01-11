@@ -9,34 +9,47 @@ def add_contacts(contacts):
     name = input("Please enter the contact's name: ").title()
     phone = input("Enter their phone number: ")
     address = input("Enter their address: ")
-    favorite = bool(input("Favorite this contact (T/F): "))
+    favorite = input("Favorite this contact (T/F): ").strip().lower() == "t"
     contacts[name] = [phone, address, favorite]
+    print(f"Contact {name} added successfully!\n")
 
 def display_contacts(contacts):
     if not contacts:
         print("You have not added any contacts yet. Please add to your contact list.\n")
     else:
-        for contact in contacts:
-            print(contact)
+        print("\nAll Contacts:")
+        for name, info in contacts.items():
+            phone, address, favorite = info
+            favorite_status = "Yes" if favorite else "No"
+            print(f"Name: {name}, Phone: {phone}, Address: {address}, Favorite: {favorite_status}")
 
 def search_contacts(contacts):
-    return
+    name = input("Enter name to search: ").title()
+    if name in contacts:
+        phone, address, favorite = contacts[name]
+        favorite_status = "Yes" if favorite else "No"
+        print(f"Name: {name}, Phone: {phone}, Address: {address}, Favorite: {favorite_status}")
+    else:
+        print(f"No contact found for {name}.\n")
 
 def main():
-    contacts = {} # Name : Phone, Address, Favorite(T/F)
+    contacts = {}  # Dictionary format: {Name: [Phone, Address, Favorite]}
 
-    menu = display_menu()
-    print(menu)
+    while True:
+        display_menu()
+        option = input("Choose an option (1-4): ").strip()
 
-    option = input("What would you like to do: ")
+        if option == "1":
+            add_contacts(contacts)
+        elif option == "2":
+            display_contacts(contacts)
+        elif option == "3":
+            search_contacts(contacts)
+        elif option == "4":
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid option. Please try again.\n")
 
-    if option == 1:
-        add = add_contacts(contacts)
-    elif option == 2:
-        display = display_contacts(contacts)
-    elif option == 3:
-        search = search_contacts(contacts)
-    elif option == 4:
-        exit
-    else:
-        print("Invalid option. Please try again.\n")
+if __name__ == "__main__":
+    main()
